@@ -1,9 +1,7 @@
 def adicionar_tarefa(tarefas, nome_tarefa):
-    #tarefa: nome
-    #completada: ja foi completada ou não?
-    #Para armazenar mais de um valor, criamos dicionário
+    """Adiciona uma nova tarefa com status pendente à lista."""
     tarefa = {"tarefa": nome_tarefa, "completada": False} # como estamos inserindo, sempre é falso
-    tarefas.append(tarefa) #Poderia escrever a linha de cima aqui(), sem criar a variavel 
+    tarefas.append(tarefa) #Poderia escrever a linha de cima aqui(), sem criar a variavel
     print(f"Tarefa {nome_tarefa} foi adicionada com sucesso!")
     return #não faz diferença aqui, mas é importante manter
 
@@ -13,10 +11,10 @@ def ver_tarefas(tarefas):
         status = "✔️  " if tarefa["completada"] else " " #facilitando entendimento do usuário
         nome_tarefa = tarefa["tarefa"]
         print(f"{indice}. [{status}] {nome_tarefa}")
-        #aqui não pode haver return, pq precisa continuar adicionando tarefas
+        #aqui não pode haver return, porque precisa continuar adicionando tarefas
 
 def atualizar_tarefa(tarefa, indice_tarefa, novo_nome_tarefa):
-    indice_tarefa_ajustado = indice_tarefa - 1 #para pegar corretamente a tarefa por conta do start=1
+    indice_tarefa_ajustado = indice_tarefa - 1 #para pegar corretamente a tarefa, que muda o indice por conta do start=1
     if indice_tarefa_ajustado >= 0 and indice_tarefa_ajustado < len(tarefas):
         tarefas[indice_tarefa_ajustado]["tarefa"] = novo_nome_tarefa
         print(f"Tarefa {indice_tarefa} atualizada para {novo_nome_tarefa}")
@@ -32,7 +30,7 @@ def completar_tarefa(tarefas, indice_tarefa):
 
 def deletar_tarefas_completadas(tarefas):
      for tarefa in tarefas:
-          if tarefa["completada"]: #ou == True: tb
+          if tarefa["completada"]: #ou == True: também da certo
                tarefas.remove(tarefa)
      print("As tarefas completadas foram deletadas!")
      return
@@ -70,7 +68,7 @@ while True:
          deletar_tarefas_completadas(tarefas)
          ver_tarefas(tarefas)
 
-    elif escolha == "6": #caso seja outra escolha, não vai executar essa
+    elif escolha == "6":
         break
 
 print("Sessão finalizada!")
